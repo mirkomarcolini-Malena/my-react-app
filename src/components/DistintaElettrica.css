@@ -276,9 +276,83 @@
   color: #dc2626;
 }
 
+
 @media (prefers-color-scheme: dark) {
   .de-icon-btn--delete:hover {
     background: rgba(248, 113, 113, 0.12);
     color: #f87171;
   }
+}
+
+/* ── Autocomplete codice articolo SAP ── */
+.de-autocomplete {
+  position: relative;
+  width: 100%;
+}
+
+.de-autocomplete__input--loading {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='%23aa3bff' stroke-width='3' stroke-dasharray='31.4' stroke-dashoffset='10'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 12 12' to='360 12 12' dur='0.7s' repeatCount='indefinite'/%3E%3C/circle%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  padding-right: 24px;
+}
+
+.de-autocomplete__lista {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  z-index: 100;
+  min-width: 280px;
+  max-width: 420px;
+  max-height: 220px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  background: var(--bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+}
+
+.de-autocomplete__voce {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.de-autocomplete__voce:hover,
+.de-autocomplete__voce--attiva {
+  background: var(--accent-bg);
+}
+
+.de-autocomplete__codice {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.de-autocomplete__nome {
+  font-size: 12px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.de-sap-errore {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  font-size: 11px;
+  color: #dc2626;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 4px;
+  padding: 4px 8px;
+  white-space: nowrap;
+  z-index: 101;
 }

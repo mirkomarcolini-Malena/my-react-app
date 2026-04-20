@@ -1,5 +1,6 @@
 import { useState, useRef, useId, useCallback } from 'react'
 import type { ComponenteElettrico, CampoModificabile } from '../types/distinta'
+import CodiceArticoloInput from './CodiceArticoloInput'
 import './DistintaElettrica.css'
 
 const UNITA_MISURA = ['pz', 'm', 'kg', 'mt', 'ml', 'set', 'cad', 'l', 'h']
@@ -168,6 +169,18 @@ export default function DistintaElettrica() {
     []
   )
 
+  // Aggiorna codice e descrizione insieme quando l'utente sceglie un articolo SAP
+  const selezionaArticoloSAP = useCallback(
+    (id: string, codice: string, descrizione: string) => {
+      setRighe((prev) =>
+        prev.map((r) =>
+          r.id === id ? { ...r, codice, descrizione } : r
+        )
+      )
+    },
+    []
+  )
+
   const aggiungiRiga = useCallback(() => {
     setRighe((prev) => [...prev, nuovoComponente(nextId())])
   }, [])
@@ -288,10 +301,12 @@ export default function DistintaElettrica() {
                 <tr key={riga.id} className="de-row">
                   <td className="de-td de-td--num">{idx + 1}</td>
                   <td className="de-td">
-                    <CellulaTesto
+                    <CodiceArticoloInput
                       valore={riga.codice}
-                      placeholder="es. CB-001"
                       onChange={(v) => aggiornaRiga(riga.id, 'codice', v)}
+                      onSeleziona={(codice, descrizione) =>
+                        selezionaArticoloSAP(riga.id, codice, descrizione)
+                      }
                     />
                   </td>
                   <td className="de-td">
