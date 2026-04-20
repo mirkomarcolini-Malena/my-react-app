@@ -23,6 +23,15 @@ export default function CodiceArticoloInput({
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const listRef = useRef<HTMLUListElement>(null)
+  const mountedRef = useRef(true)
+
+  useEffect(() => {
+    mountedRef.current = true
+    return () => {
+      mountedRef.current = false
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
+  }, [])
 
   // Chiudi dropdown al click esterno
   useEffect(() => {
@@ -54,18 +63,21 @@ export default function CodiceArticoloInput({
       return
     }
     timerRef.current = setTimeout(async () => {
+      if (!mountedRef.current) return
       setCaricamento(true)
       setErrore('')
       try {
         const items = await cercaArticoli(q)
+        if (!mountedRef.current) return
         setSuggerimenti(items)
         setAperto(items.length > 0)
         setIndiceSel(-1)
       } catch (err) {
+        if (!mountedRef.current) return
         setErrore(err instanceof Error ? err.message : 'Errore ricerca SAP')
         setAperto(false)
       } finally {
-        setCaricamento(false)
+        if (mountedRef.current) setCaricamento(false)
       }
     }, 300)
   }, [])

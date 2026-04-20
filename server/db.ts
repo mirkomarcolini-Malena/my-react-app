@@ -15,7 +15,12 @@ export interface DbConfig {
 let pool: sql.ConnectionPool | null = null
 
 async function getPool(cfg: DbConfig): Promise<sql.ConnectionPool> {
-  if (pool && pool.connected) return pool
+  if (pool) {
+    if (pool.connected) return pool
+    // Pool esiste ma non connesso — chiudi e ricrea
+    try { await pool.close() } catch { /* ignora */ }
+    pool = null
+  }
   pool = new sql.ConnectionPool({
     server: cfg.server,
     database: cfg.database,
