@@ -1,0 +1,284 @@
+.de-wrapper {
+  padding: 32px 24px 48px;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+}
+
+/* ── Header ── */
+.de-header {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.de-title {
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0 0 8px;
+  letter-spacing: -0.5px;
+}
+
+.de-subtitle {
+  color: var(--text);
+  font-size: 16px;
+  margin: 0;
+}
+
+/* ── Toolbar ── */
+.de-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.de-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.de-btn:hover {
+  opacity: 0.88;
+  box-shadow: var(--shadow);
+}
+
+.de-btn--primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.de-btn--secondary {
+  background: var(--social-bg);
+  color: var(--text-h);
+  border: 1px solid var(--border);
+}
+
+.de-btn--danger {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  .de-btn--danger {
+    color: #f87171;
+    border-color: rgba(248, 113, 113, 0.3);
+    background: rgba(248, 113, 113, 0.1);
+  }
+}
+
+.de-file-input {
+  display: none;
+}
+
+.de-errore {
+  color: #dc2626;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+/* ── Table container ── */
+.de-table-container {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+/* ── Table ── */
+.de-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 900px;
+}
+
+.de-th {
+  background: var(--code-bg);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.de-th--num {
+  width: 50px;
+  text-align: center;
+}
+
+.de-th--wide {
+  min-width: 160px;
+}
+
+.de-th--price {
+  width: 120px;
+  text-align: right;
+}
+
+.de-th--actions {
+  width: 80px;
+  text-align: center;
+}
+
+/* ── Rows ── */
+.de-row {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+
+.de-row:last-child {
+  border-bottom: none;
+}
+
+.de-row:hover {
+  background: var(--accent-bg);
+}
+
+.de-td {
+  padding: 6px 8px;
+  vertical-align: middle;
+}
+
+.de-td--num {
+  text-align: center;
+  color: var(--text);
+  font-size: 12px;
+  padding: 6px 4px;
+}
+
+.de-td--total {
+  text-align: right;
+  font-weight: 600;
+  color: var(--text-h);
+  white-space: nowrap;
+  padding-right: 12px;
+}
+
+.de-td--actions {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.de-td--footer-label {
+  text-align: right;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 13px;
+  padding-right: 12px;
+}
+
+.de-td--grand-total {
+  font-size: 15px;
+  color: var(--accent);
+}
+
+/* ── Footer row ── */
+.de-footer-row {
+  background: var(--code-bg);
+  border-top: 2px solid var(--border);
+}
+
+/* ── Empty state ── */
+.de-empty {
+  text-align: center;
+  color: var(--text);
+  padding: 40px 20px;
+  font-size: 15px;
+}
+
+/* ── Inputs inside cells ── */
+.de-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px 8px;
+  font-size: 13px;
+  font-family: inherit;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-h);
+  transition: border-color 0.15s, background 0.15s;
+  min-width: 0;
+}
+
+.de-input:hover {
+  border-color: var(--border);
+  background: var(--bg);
+}
+
+.de-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--bg);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+.de-input::placeholder {
+  color: var(--text);
+  opacity: 0.5;
+}
+
+.de-input--number {
+  text-align: right;
+  max-width: 90px;
+}
+
+.de-input--select {
+  appearance: auto;
+  cursor: pointer;
+  max-width: 70px;
+}
+
+/* ── Action icon buttons ── */
+.de-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  background: transparent;
+  transition: background 0.15s, color 0.15s;
+  color: var(--text);
+}
+
+.de-icon-btn--copy:hover {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.de-icon-btn--delete:hover {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+}
+
+@media (prefers-color-scheme: dark) {
+  .de-icon-btn--delete:hover {
+    background: rgba(248, 113, 113, 0.12);
+    color: #f87171;
+  }
+}
